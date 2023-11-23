@@ -4,6 +4,9 @@
 #include<string>
 #include"noncopyable.h"
 
+namespace ccy
+{
+
 class AsyncLogging;
 const int kSmallBuffer = 4000;
 const int kLargeBuffer = 4000 * 1000;
@@ -96,3 +99,5 @@ private:
     Buffer buffer_;
     static const int kMaxNumberSize = 32;
 };
+    
+} // namespace ccy
