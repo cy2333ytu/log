@@ -18,7 +18,7 @@ public:
     ~Thread();
 
     void start();
-    void join();
+    int join();
     bool started() {return _started;}
     pid_t tid() const {return _tid;}
     const std::string& name() const {return _name;}

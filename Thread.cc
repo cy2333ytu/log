@@ -80,6 +80,35 @@ Thread::~Thread(){
     if(_started && !_joined) pthread_detach(_pthreadId);
 }
 
+void Thread::setDefaultName(){
+    if(_name.empty()){
+        char buf[32];
+        snprintf(buf, sizeof buf, "Thread");
+        _name = buf;
+    }
+}
+
+void Thread::start(){
+    assert(!_started);
+    _started = true;
+    auto data = std::make_unique<ThreadData>(_func, _name, &_tid, &_latch);
+
+    if(pthread_create(&_pthreadId, nullptr, &startThread, data.get())){
+        _started = false;
+    }else{
+        _latch.wait();
+        assert(_tid > 0);
+    }
+}
+
+int Thread::join(){
+    assert(_started);
+    assert(!_joined);
+
+    _joined = true;
+    return pthread_join(_pthreadId, nullptr);
+    
+}
 
 
 
