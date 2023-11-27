@@ -12,11 +12,11 @@ public:
 
     void append(const char*logline, const size_t len);
     void flush();
-
+    
 private:
     size_t write(const char* logline, size_t len);
     FILE *_fp;
-    char _buffer[64*1024];
+    char _buffer[64 * 1024];
 };
 
 }

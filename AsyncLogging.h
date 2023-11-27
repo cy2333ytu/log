@@ -39,6 +39,7 @@ private:
     
     const int _flushInterval;
     bool _running;
+    
     std::string _basename;
     Thread _thread;
     MutexLock _mutex;
