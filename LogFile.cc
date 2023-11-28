@@ -7,7 +7,7 @@
 
 namespace ccy{
 
-LogFile::LogFile(const std::string& basename, int flushEveryN = 1024)
+LogFile::LogFile(const std::string& basename, int flushEveryN)
     : _basename(basename)
     , _flushEveryN(flushEveryN)
     , _count(0)
@@ -24,9 +24,6 @@ void LogFile::append(const char* logline, int len){
 void LogFile::flush(){
     MutexLockGuard lock(*_mutex);
     _file->flush();
-}
-bool LogFile::rollFile(){
-
 }
 
 void LogFile::append_unlocked(const char* logline, int len){
