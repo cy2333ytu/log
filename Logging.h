@@ -34,4 +34,5 @@ static std::string _logFileName;
 };
 
 #define LOG Logger(__FILE__, __LINE__).stream()
+
 }
